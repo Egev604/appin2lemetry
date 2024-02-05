@@ -4,7 +4,7 @@ import { styled } from "@mui/system";
 
 const FooterContainer = styled('footer')(
     ({ theme }) => ({
-            padding: theme.spacing(6),
+            padding: theme.spacing(2),
             marginTop: 'auto',
     })
 );
@@ -23,7 +23,7 @@ const Footer = () => {
                     {' © '}
                     <Link color="inherit" href="https://www.example.com/">
                         domoi
-                    </Link>{' '}
+                    </Link>{''}
                 </Typography>
             </Container>
         </FooterContainer>
