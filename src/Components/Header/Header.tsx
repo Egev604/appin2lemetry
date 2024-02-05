@@ -1,17 +1,26 @@
 import React from 'react';
-import {Box, Tabs, Tab, AppBar} from "@mui/material";
+import {Box, Tabs, Tab, AppBar, Typography} from "@mui/material";
+import {Link} from 'react-router-dom';
+
 
 const Header = () => {
     return (
         <AppBar position="static">
-        <Box sx={{ width: '100%', display: 'flex', justifyContent:'space-between', alignItems: 'center' }}>
-            <h1>PC Load</h1>
+            <Box sx={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Link to="/main" style={{textDecoration: 'none', color: 'black'}}>
+                    <Typography variant="h3">
+                        PC Load
+                    </Typography>
+                </Link>
                 <Tabs aria-label="basic tabs example">
-                    <Tab label="Item One"  />
-                    <Tab label="Item Two" />
-                    <Tab label="Item Three"  />
+                    <Link to="/main" style={{textDecoration: 'none', color: 'black'}}>
+                        <Tab label="Главная"/>
+                    </Link>
+                    <Link to="/info" style={{textDecoration: 'none', color: 'black'}}>
+                        <Tab label="Информация"/>
+                    </Link>
                 </Tabs>
-        </Box>
+            </Box>
         </AppBar>
     );
 };
