@@ -6,7 +6,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Info from "./Components/Main/Info";
 function App() {
     return (
-        <div>
+        <div style={{margin: 0,
+            color: "#fff",
+            display: "table",
+            minHeight: "100vh",
+            width: "100%" }}>
             <Router>
                 <Header />
                 <Routes>

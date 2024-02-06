@@ -11,7 +11,7 @@ const computers = [
 
 const Main = () => {
     return (
-        <Box margin="20px" display="flex" justifyContent="center" alignItems="center">
+        <Box margin="20px" display="flex" justifyContent="center" alignItems="center" style={{height: "1fr"}} >
             <Grid container spacing={3} justifyContent="center">
                 {computers.map((computer, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
