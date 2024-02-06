@@ -1,7 +1,7 @@
 import React from 'react';
-import {Box, Tabs, Tab, AppBar, Typography} from "@mui/material";
+import {Box, Tabs, Tab, AppBar, Typography, IconButton, useTheme} from "@mui/material";
 import {Link} from 'react-router-dom';
-
+import NightModeToggle from './NightModeToggle';
 //qwe
 const Header = () => {
     return (
@@ -12,13 +12,14 @@ const Header = () => {
                         PC Load
                     </Typography>
                 </Link>
-                <Tabs value={0} aria-label="basic tabs example">
+                <Tabs aria-label="basic tabs example">
                     <Link to="/main" style={{textDecoration: 'none', color: 'black'}}>
                         <Tab label="Главная"/>
                     </Link>
                     <Link to="/info" style={{textDecoration: 'none', color: 'black'}}>
                         <Tab label="Информация"/>
                     </Link>
+                    <NightModeToggle/>
                 </Tabs>
             </Box>
         </AppBar>

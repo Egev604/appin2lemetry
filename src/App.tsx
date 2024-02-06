@@ -1,22 +1,24 @@
 import React from 'react';
-import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer/Footer";
-import Main from "./Components/Main/Main";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Info from "./Components/Main/Info";
+import { createTheme, Paper, ThemeProvider } from '@mui/material';
+import useTheme, { ColorModeContext } from './hooks/useTheme';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import AppRoutes from './routs/AppRoutes';
 function App() {
+    const { colorMode, theme} = useTheme()
     return (
-        <div>
-            <Router>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/main" element={<Main />} />
-                    <Route path="/info" element={<Info />} />
-                </Routes>
-                <Footer />
-            </Router>
-        </div>
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+                <Paper elevation={0} sx={{height: "100vh"}}>
+                    <Router>
+                        <Header/>
+                        <AppRoutes/>
+                        <Footer/>
+                    </Router>
+                </Paper>
+            </ThemeProvider>
+        </ColorModeContext.Provider>
     );
 }
 
