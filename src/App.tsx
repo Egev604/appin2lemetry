@@ -10,7 +10,7 @@ function App() {
     return (
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
-                <Paper elevation={0} sx={{height: "100vh"}}>
+                <Paper elevation={0} sx={{height: "100%"}}>
                     <Router>
                         <Header/>
                         <AppRoutes/>
