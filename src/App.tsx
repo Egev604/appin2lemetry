@@ -1,5 +1,5 @@
 import React from 'react';
-import { createTheme, Paper, ThemeProvider } from '@mui/material';
+import { Paper, ThemeProvider } from '@mui/material';
 import useTheme, { ColorModeContext } from './hooks/useTheme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
