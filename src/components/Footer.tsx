@@ -1,7 +1,6 @@
 import React from 'react';
 import {Container, Typography} from "@mui/material";
 import { styled } from "@mui/system";
-import { Link } from 'react-router-dom';
 
 const FooterContainer = styled('footer')(
     ({ theme }) => ({
@@ -17,14 +16,11 @@ const Footer = () => {
                 <Typography variant="h6" align="center" gutterBottom>
                     PC Load
                 </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Mda
-                </Typography>
-                <Typography variant="body2" color="textSecondary" align="center">
-                    {' © '}
-                    <Link color="inherit" to="/main">
-                        domoi
-                    </Link>
+                <Typography variant="body2" color="text.secondary" align="center">
+                    {'Copyright © '}
+                    {'appin2lemetry '}
+                    {new Date().getFullYear()}
+                    {'.'}
                 </Typography>
             </Container>
         </FooterContainer>

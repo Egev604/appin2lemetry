@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Tabs, Tab, AppBar } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ComputerItem from "./ComputerItem";
 
 const computers = [
