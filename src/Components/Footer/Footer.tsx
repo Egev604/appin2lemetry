@@ -1,6 +1,7 @@
 import React from 'react';
-import {Container, Link, Typography} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 import { styled } from "@mui/system";
+import { Link } from 'react-router-dom';
 
 const FooterContainer = styled('footer')(
     ({ theme }) => ({
@@ -21,9 +22,9 @@ const Footer = () => {
                 </Typography>
                 <Typography variant="body2" color="textSecondary" align="center">
                     {' © '}
-                    <Link color="inherit" href="https://www.example.com/">
+                    <Link color="inherit" to="/main">
                         domoi
-                    </Link>{''}
+                    </Link>
                 </Typography>
             </Container>
         </FooterContainer>

@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Tabs, Tab, AppBar, Typography} from "@mui/material";
 import {Link} from 'react-router-dom';
 
-
+//qwe
 const Header = () => {
     return (
         <AppBar position="static">
@@ -12,7 +12,7 @@ const Header = () => {
                         PC Load
                     </Typography>
                 </Link>
-                <Tabs aria-label="basic tabs example">
+                <Tabs value={0} aria-label="basic tabs example">
                     <Link to="/main" style={{textDecoration: 'none', color: 'black'}}>
                         <Tab label="Главная"/>
                     </Link>
