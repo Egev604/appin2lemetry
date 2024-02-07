@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, ThemeProvider } from '@mui/material';
+import {Grid, Paper, ThemeProvider} from '@mui/material';
 import useTheme, { ColorModeContext } from './hooks/useTheme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
@@ -12,9 +12,17 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Paper elevation={0} sx={{height: "100%"}}>
                     <Router>
-                        <Header/>
-                        <AppRoutes/>
-                        <Footer/>
+                        <Grid container direction="column" style={{ minHeight: '100vh' }}>
+                            <Grid item>
+                                <Header />
+                            </Grid>
+                            <Grid item xs>
+                                <AppRoutes/>
+                            </Grid>
+                            <Grid item>
+                                <Footer />
+                            </Grid>
+                        </Grid>
                     </Router>
                 </Paper>
             </ThemeProvider>
