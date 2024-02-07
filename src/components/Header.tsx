@@ -21,10 +21,10 @@ const Header = () => {
                 </Link>
                 <Tabs aria-label="basic tabs example" style={{margin:10}} >
                     <Link to="/main" style={{textDecoration: 'none', color: 'black'}}>
-                        <Tab label="Главная"/>
+                        <Tab label="Home"/>
                     </Link>
                     <Link to="/info" style={{textDecoration: 'none', color: 'black'}}>
-                        <Tab label="Информация"/>
+                        <Tab label="Information"/>
                     </Link>
                     <IconButton onClick={toggleMenu} size="large" edge="end" color="inherit"  >
                         <AccountCircleIcon />

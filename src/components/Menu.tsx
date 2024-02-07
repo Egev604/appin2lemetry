@@ -29,16 +29,16 @@ const Menu: React.FC<MenuProps> = ({isMenuOpen= false, toggleMenu}) => {
             <Divider/>
             <List>
                 <ListItem button>
-                    <ListItemText primary="Профиль"/>
+                    <ListItemText primary="Profile"/>
                 </ListItem>
                 <ListItem button>
-                    <ListItemText primary="Настройки"/>
+                    <ListItemText primary="Settings"/>
                 </ListItem>
             </List>
             <Divider/>
             <List>
                 <ListItem button>
-                    <ListItemText primary="Выйти"/>
+                    <ListItemText primary="Sign out"/>
                 </ListItem>
             </List>
             <Divider/>
