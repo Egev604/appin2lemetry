@@ -4,7 +4,7 @@ import useTheme, { ColorModeContext } from './hooks/useTheme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import AppRoutes from './routs/AppRoutes';
+import AppRoutes from './routes/AppRoutes';
 function App() {
     const { colorMode, theme} = useTheme()
     return (
