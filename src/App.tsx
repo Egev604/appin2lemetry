@@ -5,6 +5,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AppRoutes from './routes/AppRoutes';
+import Login from "./components/Authorization/Login";
+import SignUp from "./components/Authorization/SignUp";
+import AuthPage from "./pages/AuthPage/AuthPage";
 function App() {
     const { colorMode, theme} = useTheme()
     return (
@@ -12,17 +15,18 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Paper elevation={0} sx={{height: "100%"}}>
                     <Router>
-                        <Grid container direction="column" style={{ minHeight: '100vh' }}>
-                            <Grid item>
-                                <Header />
-                            </Grid>
-                            <Grid item xs>
-                                <AppRoutes/>
-                            </Grid>
-                            <Grid item>
-                                <Footer />
-                            </Grid>
-                        </Grid>
+                        {/*<Grid container direction="column" style={{ minHeight: '100vh' }}>*/}
+                        {/*    <Grid item>*/}
+                        {/*        <Header />*/}
+                        {/*    </Grid>*/}
+                        {/*    <Grid item xs>*/}
+                        {/*        <AppRoutes/>*/}
+                        {/*    </Grid>*/}
+                        {/*    <Grid item>*/}
+                        {/*        <Footer />*/}
+                        {/*    </Grid>*/}
+                        {/*</Grid>*/}
+                        <AuthPage/>
                     </Router>
                 </Paper>
             </ThemeProvider>
