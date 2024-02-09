@@ -18,12 +18,12 @@ const Header = () => {
                     PC Load
                 </Typography>
                 <Tabs aria-label="basic tabs example" style={{margin: 10}}>
-                    {currentUser && (<Link to="/main" style={{textDecoration: 'none', color: 'black'}}>
+                    <Link to="/main" style={{textDecoration: 'none', color: 'black'}}>
                         <Tab label="Home"/>
-                    </Link>)}
-                    {currentUser && (<Link to="/info" style={{textDecoration: 'none', color: 'black'}}>
+                    </Link>
+                    <Link to="/info" style={{textDecoration: 'none', color: 'black'}}>
                         <Tab label="Information"/>
-                    </Link>)}
+                    </Link>
                     {currentUser ? (<IconButton onClick={toggleMenu} size="large" edge="end" color="inherit">
                         <AccountCircleIcon/>
                     </IconButton>) : (
