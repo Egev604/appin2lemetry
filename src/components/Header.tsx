@@ -7,7 +7,7 @@ import {IUser} from "../models/User";
 //qwe
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
+    const [currentUser] = useState<IUser | undefined>(undefined);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -24,7 +24,7 @@ const Header = () => {
                     <Link to="/info" style={{textDecoration: 'none', color: 'black'}}>
                         <Tab label="Information"/>
                     </Link>
-                    {currentUser ? (<IconButton onClick={toggleMenu} size="large" edge="end" color="inherit">
+                    {currentUser ? (<IconButton onClick={toggleMenu} size="large" edge="end" color="inherit" sx={{ mr: 2, ml: 2 }}>
                         <AccountCircleIcon/>
                     </IconButton>) : (
                         <>

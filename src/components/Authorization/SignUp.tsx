@@ -76,7 +76,7 @@ const SignUp = () => {
                         label="Password"
                     />
                 </FormControl>
-                <FormControl fullWidth>
+                <FormControl fullWidth sx={{ mt: 1}}>
                     <InputLabel htmlFor="outlined-adornment-confirm-password">Confirm Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-confirm-password"
