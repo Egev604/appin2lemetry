@@ -34,9 +34,6 @@ const Login = () => {
     };
     return (
         <Container maxWidth="sm" style={{ marginTop: '20px' }}>
-            <Typography variant="h4" align="center" gutterBottom>
-                PC Load
-            </Typography>
             <Typography variant="h5" align="center" gutterBottom>
                 Log in
             </Typography>

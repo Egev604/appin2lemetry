@@ -27,6 +27,7 @@ const SignUp = () => {
         confirmPassword: ''
     });
     const [showPassword, setShowPassword] = React.useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -35,10 +36,6 @@ const SignUp = () => {
             [name]: value,
         }));
     };
-    const [rememberMe, setRememberMe] = useState(false);
-    const handleShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
 
     const handleSignUp = () => {
 
@@ -46,9 +43,6 @@ const SignUp = () => {
 
     return (
         <Container maxWidth="sm" style={{ marginTop: '20px' }}>
-            <Typography variant="h4" align="center" gutterBottom>
-                PC Load
-            </Typography>
             <Typography variant="h5" align="center" gutterBottom>
                 Sign Up
             </Typography>
@@ -71,7 +65,7 @@ const SignUp = () => {
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={handleShowPassword}
+                                    onClick={() => setShowPassword(!showPassword)}
                                     onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault()}
                                     edge="end"
                                 >
@@ -91,7 +85,7 @@ const SignUp = () => {
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={handleShowPassword}
+                                    onClick={() => setShowPassword(!showPassword)}
                                     onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault()}
                                     edge="end"
                                 >
