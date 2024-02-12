@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
-    Typography,
-    TextField,
     Button,
+    Checkbox,
     Container,
     FormControl,
+    FormControlLabel,
+    IconButton,
+    InputAdornment,
     InputLabel,
     OutlinedInput,
-    InputAdornment,
-    IconButton,
-    FormControlLabel,
-    Checkbox
+    TextField,
+    Typography,
 } from '@mui/material';
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import React, { useState } from 'react';
 
 interface SignUpData {
     email: string;
@@ -24,8 +24,9 @@ const SignUp = () => {
     const [signUpData, setSignUpData] = useState<SignUpData>({
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
     });
+
     const [showPassword, setShowPassword] = React.useState(false);
     const [rememberMe, setRememberMe] = useState(false);
 
@@ -38,7 +39,7 @@ const SignUp = () => {
     };
 
     const handleSignUp = () => {
-
+        console.log('Sign up');
     };
 
     return (
@@ -76,7 +77,7 @@ const SignUp = () => {
                         label="Password"
                     />
                 </FormControl>
-                <FormControl fullWidth sx={{ mt: 1}}>
+                <FormControl fullWidth sx={{ mt: 1 }}>
                     <InputLabel htmlFor="outlined-adornment-confirm-password">Confirm Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-confirm-password"

@@ -1,15 +1,18 @@
-import React, {useState} from 'react';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
-    Typography,
-    TextField,
-    Checkbox,
-    FormControlLabel,
     Button,
+    Checkbox,
     Container,
     FormControl,
-    InputLabel, OutlinedInput, InputAdornment, IconButton
+    FormControlLabel,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    TextField,
+    Typography,
 } from '@mui/material';
-import {Visibility, VisibilityOff} from "@mui/icons-material";
+import React, { useState } from 'react';
 interface LoginData {
     email: string;
     password: string;
@@ -17,10 +20,12 @@ interface LoginData {
 const Login = () => {
     const [loginData, setLoginData] = useState<LoginData>({
         email: '',
-        password: ''
-    })
+        password: '',
+    });
+
     const [rememberMe, setRememberMe] = useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setLoginData((prevLoginData) => ({
@@ -30,8 +35,9 @@ const Login = () => {
     };
 
     const handleLogin = () => {
-
+        console.log('login');
     };
+
     return (
         <Container maxWidth="sm" style={{ marginTop: '20px' }}>
             <Typography variant="h5" align="center" gutterBottom>

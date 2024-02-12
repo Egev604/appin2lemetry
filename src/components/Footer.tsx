@@ -1,15 +1,13 @@
+import { Container, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 import React from 'react';
-import {Container, Typography} from "@mui/material";
-import { styled } from "@mui/system";
 
-const FooterContainer = styled('footer')(
-    ({ theme }) => ({
-            padding: theme.spacing(2),
-            marginTop: 'auto',
-    })
-);
+const FooterContainer = styled('footer')(({ theme }) => ({
+    padding: theme.spacing(2),
+    marginTop: 'auto',
+}));
+
 const Footer = () => {
-
     return (
         <FooterContainer>
             <Container maxWidth="lg">

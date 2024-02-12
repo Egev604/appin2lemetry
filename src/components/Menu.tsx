@@ -1,49 +1,63 @@
-import React from 'react';
-import {Avatar, Divider, Drawer, IconButton, List, ListItem, ListItemText} from "@mui/material";
-import NightModeToggle from "./NightModeToggle";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
-interface MenuProps {
-    isMenuOpen?:boolean
-    toggleMenu:()=>void
-}
-const drawerWidth = 300;
-const Menu: React.FC<MenuProps> = ({isMenuOpen= false, toggleMenu}) => {
-    return (
-        <Drawer anchor="right" open={isMenuOpen} onClose={toggleMenu} sx={{
-            width:drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-                width: drawerWidth,
-            },
-        }}>
+import { Avatar, Divider, Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
+import React from 'react';
 
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px'}}>
+import NightModeToggle from './NightModeToggle';
+
+interface MenuProps {
+    isMenuOpen?: boolean;
+    toggleMenu: () => void;
+}
+
+const drawerWidth = 300;
+const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
+    return (
+        <Drawer
+            anchor="right"
+            open={isMenuOpen}
+            onClose={toggleMenu}
+            sx={{
+                width: drawerWidth,
+                flexShrink: 0,
+                '& .MuiDrawer-paper': {
+                    width: drawerWidth,
+                },
+            }}
+        >
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '20px',
+                }}
+            >
                 <Avatar>
-                    <AccountCircleIcon/>
+                    <AccountCircleIcon />
                 </Avatar>
                 <IconButton onClick={toggleMenu}>
-                    <CloseIcon/>
+                    <CloseIcon />
                 </IconButton>
             </div>
-            <Divider/>
+            <Divider />
             <List>
                 <ListItem button>
-                    <ListItemText primary="Profile"/>
+                    <ListItemText primary="Profile" />
                 </ListItem>
                 <ListItem button>
-                    <ListItemText primary="Settings"/>
+                    <ListItemText primary="Settings" />
                 </ListItem>
             </List>
-            <Divider/>
+            <Divider />
             <List>
                 <ListItem button>
-                    <ListItemText primary="Sign out"/>
+                    <ListItemText primary="Sign out" />
                 </ListItem>
             </List>
-            <Divider/>
-            <div style={{marginTop: 'auto', marginLeft: 'auto', padding: 15}}>
-                <NightModeToggle/>
+            <Divider />
+            <div style={{ marginTop: 'auto', marginLeft: 'auto', padding: 15 }}>
+                <NightModeToggle />
             </div>
         </Drawer>
     );
