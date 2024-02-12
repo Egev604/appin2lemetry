@@ -1,10 +1,10 @@
-import { PaletteMode } from "@mui/material";
-import { blue, deepOrange, grey } from "@mui/material/colors";
+import { PaletteMode } from '@mui/material'
+import { blue, deepOrange, grey } from '@mui/material/colors'
 
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
-    ...(mode === "light"
+    ...(mode === 'light'
       ? {
           primary: blue,
           divider: blue[200],
@@ -25,10 +25,10 @@ const getDesignTokens = (mode: PaletteMode) => ({
             paper: grey[900],
           },
           text: {
-            primary: "#fff",
+            primary: '#fff',
             secondary: grey[500],
           },
         }),
   },
-});
-export default getDesignTokens;
+})
+export default getDesignTokens

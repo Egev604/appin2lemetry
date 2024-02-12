@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Typography,
   TextField,
@@ -11,36 +11,38 @@ import {
   IconButton,
   FormControlLabel,
   Checkbox,
-} from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+} from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 interface SignUpData {
-  email: string;
-  password: string;
-  confirmPassword: string;
+  email: string
+  password: string
+  confirmPassword: string
 }
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState<SignUpData>({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+    email: '',
+    password: '',
+    confirmPassword: '',
+  })
+  const [showPassword, setShowPassword] = React.useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setSignUpData((prevSignUpData) => ({
       ...prevSignUpData,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
-  const handleSignUp = () => {};
+  const handleSignUp = () => {
+    console.log('Sign up')
+  }
 
   return (
-    <Container maxWidth="sm" style={{ marginTop: "20px" }}>
+    <Container maxWidth="sm" style={{ marginTop: '20px' }}>
       <Typography variant="h5" align="center" gutterBottom>
         Sign Up
       </Typography>
@@ -60,7 +62,7 @@ const SignUp = () => {
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -84,7 +86,7 @@ const SignUp = () => {
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-confirm-password"
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -116,7 +118,7 @@ const SignUp = () => {
         </Button>
       </form>
     </Container>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

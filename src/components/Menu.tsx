@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Avatar,
   Divider,
@@ -7,15 +7,15 @@ import {
   List,
   ListItem,
   ListItemText,
-} from "@mui/material";
-import NightModeToggle from "./NightModeToggle";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import CloseIcon from "@mui/icons-material/Close";
+} from '@mui/material'
+import NightModeToggle from './NightModeToggle'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import CloseIcon from '@mui/icons-material/Close'
 interface MenuProps {
-  isMenuOpen?: boolean;
-  toggleMenu: () => void;
+  isMenuOpen?: boolean
+  toggleMenu: () => void
 }
-const drawerWidth = 300;
+const drawerWidth = 300
 const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
   return (
     <Drawer
@@ -25,17 +25,17 @@ const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
       sx={{
         width: drawerWidth,
         flexShrink: 0,
-        "& .MuiDrawer-paper": {
+        '& .MuiDrawer-paper': {
           width: drawerWidth,
         },
       }}
     >
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "20px",
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '20px',
         }}
       >
         <Avatar>
@@ -61,11 +61,11 @@ const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
         </ListItem>
       </List>
       <Divider />
-      <div style={{ marginTop: "auto", marginLeft: "auto", padding: 15 }}>
+      <div style={{ marginTop: 'auto', marginLeft: 'auto', padding: 15 }}>
         <NightModeToggle />
       </div>
     </Drawer>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

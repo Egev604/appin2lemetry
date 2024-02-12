@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Typography,
   TextField,
@@ -11,30 +11,32 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
-} from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+} from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 interface LoginData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 const Login = () => {
   const [loginData, setLoginData] = useState<LoginData>({
-    email: "",
-    password: "",
-  });
-  const [rememberMe, setRememberMe] = useState(false);
-  const [showPassword, setShowPassword] = React.useState(false);
+    email: '',
+    password: '',
+  })
+  const [rememberMe, setRememberMe] = useState(false)
+  const [showPassword, setShowPassword] = React.useState(false)
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setLoginData((prevLoginData) => ({
       ...prevLoginData,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    console.log('login')
+  }
   return (
-    <Container maxWidth="sm" style={{ marginTop: "20px" }}>
+    <Container maxWidth="sm" style={{ marginTop: '20px' }}>
       <Typography variant="h5" align="center" gutterBottom>
         Log in
       </Typography>
@@ -57,7 +59,7 @@ const Login = () => {
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -89,7 +91,7 @@ const Login = () => {
         </Button>
       </form>
     </Container>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
