@@ -1,0 +1,11 @@
+{
+"compilerOptions": {
+"esModuleInterop": true,
+"target": "es6",
+"module": "commonjs",
+"outDir": "dist", // Папка для скомпилированных файлов
+"rootDir": "src", // Папка с вашим исходным кодом
+"strict": true
+},
+"include": ["src/**/*.ts"]
+}
