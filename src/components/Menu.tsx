@@ -2,6 +2,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import { Avatar, Divider, Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import NightModeToggle from './NightModeToggle';
 
@@ -42,9 +43,11 @@ const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
             </div>
             <Divider />
             <List>
-                <ListItem button>
-                    <ListItemText primary="Profile" />
-                </ListItem>
+                <Link to="/userProfile" style={{ textDecoration: 'none', color: 'black' }}>
+                    <ListItem button>
+                        <ListItemText primary="Profile" />
+                    </ListItem>
+                </Link>
                 <ListItem button>
                     <ListItemText primary="Settings" />
                 </ListItem>

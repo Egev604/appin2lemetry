@@ -6,9 +6,14 @@ import { Link } from 'react-router-dom';
 import { IUser } from '../models/User';
 import Menu from './Menu';
 //qwe
+const user: IUser = {
+    id: 1,
+    userName: 'john_doe',
+    email: 'john.doe@example.com',
+};
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [currentUser] = useState<IUser | undefined>(undefined);
+    const [currentUser] = useState<IUser | undefined>(user);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -24,7 +29,7 @@ const Header = () => {
                 }}
             >
                 <Typography variant="h3">PC Load</Typography>
-                <Tabs aria-label="basic tabs example" style={{ margin: 10 }}>
+                <Tabs value={0} aria-label="basic tabs example" style={{ margin: 10 }}>
                     <Link to="/main" style={{ textDecoration: 'none', color: 'black' }}>
                         <Tab label="Home" />
                     </Link>
