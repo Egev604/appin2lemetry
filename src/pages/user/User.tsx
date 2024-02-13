@@ -12,14 +12,16 @@ const user: IUser = {
 const User = () => {
     const [currentUser] = useState<IUser | undefined>(user);
     const [testData, setTestData] = useState('');
+
     useEffect(() => {
         const getData = async () => {
             const data = await getDataTest();
             setTestData(data.data);
         };
 
-        getData();
+        getData().then();
     }, []);
+
     return (
         <Container sx={{ minHeight: '900px' }}>
             <Grid container>
@@ -27,7 +29,13 @@ const User = () => {
                     <Box display="flex" justifyContent="center" alignItems="center">
                         <img
                             src="https://img.freepik.com/free-photo/adorable-looking-kitten-with-yarn_23-2150886292.jpg"
-                            style={{ borderRadius: '50%', width: '150px', height: '200px' }}
+                            style={{
+                                borderRadius: '50%',
+                                width: '150px',
+                                height: '200px',
+                                marginTop: '20px',
+                                marginBottom: '10px',
+                            }}
                             alt="profilePage"
                         />
                     </Box>
@@ -37,7 +45,7 @@ const User = () => {
                 <Grid item sm={8} xs={12}>
                     <Box sx={{ width: '100%', mb: 3, mt: { sm: 3, xs: 0 } }}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                            <Tabs value={0}>
+                            <Tabs value={0} aria-label="basic tabs example">
                                 <Tab label="tab one" />
                                 <Tab label="tab two" />
                             </Tabs>

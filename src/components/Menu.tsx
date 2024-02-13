@@ -1,9 +1,9 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
-import { Avatar, Divider, Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
+import { Avatar, Divider, Drawer, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import { useRouter } from '../hooks/Router';
 import NightModeToggle from './NightModeToggle';
 
 interface MenuProps {
@@ -12,7 +12,15 @@ interface MenuProps {
 }
 
 const drawerWidth = 300;
+
 const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
+    const router = useRouter();
+
+    const handleClickButton = () => {
+        router.push('/userProfile');
+        toggleMenu();
+    };
+
     return (
         <Drawer
             anchor="right"
@@ -43,20 +51,18 @@ const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
             </div>
             <Divider />
             <List>
-                <Link to="/userProfile" style={{ textDecoration: 'none', color: 'black' }}>
-                    <ListItem button>
-                        <ListItemText primary="Profile" />
-                    </ListItem>
-                </Link>
-                <ListItem button>
+                <ListItemButton>
+                    <ListItemText primary="Profile" onClick={handleClickButton} />
+                </ListItemButton>
+                <ListItemButton>
                     <ListItemText primary="Settings" />
-                </ListItem>
+                </ListItemButton>
             </List>
             <Divider />
             <List>
-                <ListItem button>
+                <ListItemButton>
                     <ListItemText primary="Sign out" />
-                </ListItem>
+                </ListItemButton>
             </List>
             <Divider />
             <div style={{ marginTop: 'auto', marginLeft: 'auto', padding: 15 }}>
