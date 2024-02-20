@@ -29,6 +29,9 @@ class User {
             callback,
         );
     }
+    getUserByEmail(email: string, callback: (err: Error | null, user: IUser[]) => void) {
+        this.db.all('SELECT * FROM Users WHERE Email = ?', [email], callback);
+    }
 }
 
 export default User;
