@@ -1,3 +1,4 @@
+import argon2 from 'argon2';
 import { Request, Response } from 'express';
 
 import User from '../model/users.model';
@@ -17,16 +18,20 @@ class UserController {
     static async createUser(req: Request, res: Response) {
         const { firstName, lastName, email, password, roleName } = req.body;
         const userModel = new User();
-
+        const hashedPassword = await argon2.hash(password);
         const role = getRoleIdByRoleName(roleName);
         const isoDateString = new Date().toISOString().split('T')[0];
-        userModel.create({ firstName, lastName, email, password, registrationDate: isoDateString, role }, (err) => {
-            if (err) {
-                res.status(500).json({ error: err.message });
-                return;
-            }
-            res.send('User created successfully');
-        });
+
+        userModel.create(
+            { firstName, lastName, email, password: hashedPassword, registrationDate: isoDateString, role },
+            (err) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                    return;
+                }
+                res.send('User created successfully');
+            },
+        );
     }
 
     static async updateUser(req: Request, res: Response) {
@@ -34,11 +39,12 @@ class UserController {
         const { firstName, lastName, email, password, roleName } = req.body;
         const userModel = new User();
 
+        const hashedPassword = await argon2.hash(password);
         const role = getRoleIdByRoleName(roleName);
 
         userModel.update(
             parseInt(id),
-            { firstName, lastName, email, password, registrationDate: new Date().toISOString(), role },
+            { firstName, lastName, email, password: hashedPassword, registrationDate: new Date().toISOString(), role },
             (err) => {
                 if (err) {
                     res.status(500).json({ error: err.message });
