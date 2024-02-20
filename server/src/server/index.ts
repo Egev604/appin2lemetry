@@ -1,10 +1,12 @@
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 
 import authRoutes from '../auth/routes/auth.routes';
 import userRoutes from '../users/routes/users.routes';
 
 const app: Express = express();
+dotenv.config();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use('/users', userRoutes);
