@@ -7,8 +7,10 @@ import userRoutes from '../users/routes/users.routes';
 
 const app: Express = express();
 dotenv.config();
+
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.get('/test', (req: Request, res: Response) => {

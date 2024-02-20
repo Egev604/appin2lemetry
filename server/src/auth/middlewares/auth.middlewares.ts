@@ -15,7 +15,7 @@ class AuthMiddleware {
                 user[0].password = await argon2.hash(user[0].password);
                 if (await argon2.verify(user[0].password, req.body.password)) {
                     req.body = {
-                        userId: user[0].userID,
+                        userId: user[0].userId,
                     };
                     return next();
                 }
