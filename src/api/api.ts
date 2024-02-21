@@ -1,8 +1,8 @@
 import { Credentials } from '../models/Credentials';
 
-const request = async (url: string, options?: RequestInit | undefined) => {
+const request = async (endpoint: string, options?: RequestInit | undefined) => {
     try {
-        const response = await fetch(url, options);
+        const response = await fetch('http://localhost:3001' + endpoint, options);
         const result = await response.json();
 
         if (response.ok) {

@@ -5,15 +5,10 @@ import { Link } from 'react-router-dom';
 
 import { IUser } from '../models/User';
 import Menu from './Menu';
-//qwe
-const user: IUser = {
-    id: 1,
-    userName: 'john_doe',
-    email: 'john.doe@example.com',
-};
+
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [currentUser] = useState<IUser | undefined>(user);
+    const [currentUser] = useState<IUser | undefined>(undefined);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };

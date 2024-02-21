@@ -40,7 +40,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await login(loginData);
-            console.log('Login successful:', response);
+            localStorage.setItem('tokens', JSON.stringify(response));
         } catch (error) {
             console.error('Login error:', error);
         }

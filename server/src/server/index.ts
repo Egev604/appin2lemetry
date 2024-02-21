@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 
@@ -10,9 +11,14 @@ dotenv.config();
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
-
-app.use('api/users', userRoutes);
-app.use('api/auth', authRoutes);
+app.use(
+    cors({
+        credentials: true,
+        origin: 'http://localhost:3000',
+    }),
+);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 app.get('/test', (req: Request, res: Response) => {
     res.status(200).send(JSON.stringify({ data: 'AAAA!' }));
 });

@@ -14,6 +14,8 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 
+import { signup } from '../../api/api';
+
 interface SignUpData {
     email: string;
     password: string;
@@ -29,7 +31,7 @@ const SignUp = () => {
 
     const [showPassword, setShowPassword] = React.useState(false);
     const [rememberMe, setRememberMe] = useState(false);
-
+    const [passwordsMatchError, setPasswordsMatchError] = useState('');
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setSignUpData((prevSignUpData) => ({
@@ -38,10 +40,21 @@ const SignUp = () => {
         }));
     };
 
-    const handleSignUp = () => {
-        console.log('Sign up');
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (signUpData.password !== signUpData.confirmPassword) {
+            setPasswordsMatchError('Passwords do not match');
+            return;
+        }
+        setPasswordsMatchError('');
+        try {
+            const { email, password } = signUpData;
+            const response = await signup({ email, password });
+            localStorage.setItem('tokens', JSON.stringify(response));
+        } catch (error) {
+            console.error('Login error:', error);
+        }
     };
-
     return (
         <Container maxWidth="sm" style={{ marginTop: '20px' }}>
             <Typography variant="h5" align="center" gutterBottom>
@@ -62,6 +75,9 @@ const SignUp = () => {
                     <OutlinedInput
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
+                        name="password"
+                        value={signUpData.password}
+                        onChange={handleInputChange}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -82,6 +98,9 @@ const SignUp = () => {
                     <OutlinedInput
                         id="outlined-adornment-confirm-password"
                         type={showPassword ? 'text' : 'password'}
+                        name="confirmPassword"
+                        value={signUpData.confirmPassword}
+                        onChange={handleInputChange}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -101,6 +120,11 @@ const SignUp = () => {
                     control={<Checkbox checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />}
                     label="Remember me"
                 />
+                {passwordsMatchError && (
+                    <Typography variant="body2" color="error" gutterBottom>
+                        {passwordsMatchError}
+                    </Typography>
+                )}
                 <Button type="submit" variant="contained" color="primary" fullWidth>
                     Sign Up
                 </Button>
