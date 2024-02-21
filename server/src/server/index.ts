@@ -11,8 +11,8 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.use('/users', userRoutes);
-app.use('/auth', authRoutes);
+app.use('api/users', userRoutes);
+app.use('api/auth', authRoutes);
 app.get('/test', (req: Request, res: Response) => {
     res.status(200).send(JSON.stringify({ data: 'AAAA!' }));
 });

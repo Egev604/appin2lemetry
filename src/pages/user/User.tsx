@@ -1,7 +1,6 @@
 import { Box, Container, Grid, Tab, Tabs, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { getDataTest } from '../../api/api';
 import { IUser } from '../../models/User';
 
 const user: IUser = {
@@ -11,16 +10,6 @@ const user: IUser = {
 };
 const User = () => {
     const [currentUser] = useState<IUser | undefined>(user);
-    const [testData, setTestData] = useState('');
-
-    useEffect(() => {
-        const getData = async () => {
-            const data = await getDataTest();
-            setTestData(data.data);
-        };
-
-        getData().then();
-    }, []);
 
     return (
         <Container sx={{ minHeight: '900px' }}>
@@ -40,7 +29,6 @@ const User = () => {
                         />
                     </Box>
                     <Typography variant="h4">{currentUser?.userName}</Typography>
-                    <Typography variant="h6">{testData}</Typography>
                 </Grid>
                 <Grid item sm={8} xs={12}>
                     <Box sx={{ width: '100%', mb: 3, mt: { sm: 3, xs: 0 } }}>

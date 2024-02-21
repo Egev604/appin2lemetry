@@ -13,6 +13,8 @@ import {
     Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
+
+import { login } from '../../api/api';
 interface LoginData {
     email: string;
     password: string;
@@ -34,8 +36,14 @@ const Login = () => {
         }));
     };
 
-    const handleLogin = () => {
-        console.log('login');
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const response = await login(loginData);
+            console.log('Login successful:', response);
+        } catch (error) {
+            console.error('Login error:', error);
+        }
     };
 
     return (
@@ -61,6 +69,9 @@ const Login = () => {
                     <OutlinedInput
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
+                        name="password"
+                        value={loginData.password}
+                        onChange={handleInputChange}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton

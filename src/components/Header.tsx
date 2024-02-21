@@ -29,7 +29,6 @@ const Header = () => {
                 }}
             >
                 <Typography variant="h3">PC Load</Typography>
-                {/* FIXME: rewrite this code, remove tabs, and add something valid like examples an in official docs */}
                 <Tabs value={0} aria-label="basic tabs example" style={{ margin: 10 }}>
                     <Link to="/main" style={{ textDecoration: 'none', color: 'black' }}>
                         <Tab label="Home" />

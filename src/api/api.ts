@@ -1,9 +1,9 @@
+import { Credentials } from '../models/Credentials';
+
 const request = async (url: string, options?: RequestInit | undefined) => {
     try {
-        insertHeaders(options);
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log(result);
 
         if (response.ok) {
             return result;
@@ -15,26 +15,21 @@ const request = async (url: string, options?: RequestInit | undefined) => {
         console.log((e as Error).message);
     }
 };
-
-function insertHeaders(options?: RequestInit | undefined) {
-    if (!options) {
-        return;
-    }
-
-    options.headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json;charset=utf-8',
+const postRequest = async (endpoint: string, body: object) => {
+    const options: RequestInit = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
     };
-
-    return options;
-}
-const getDataTestCmd = async (options?: RequestInit | undefined) => {
-    return await request('/test', options);
+    return await request(endpoint, options);
 };
 
-export const getDataTest = async () => {
-    const options = {
-        method: 'GET',
-    };
-    return await getDataTestCmd(options);
+export const login = async (credentials: Credentials) => {
+    return await postRequest('/auth/login', credentials);
+};
+
+export const signup = async (credentials: Credentials) => {
+    return await postRequest('/auth/signup', credentials);
 };
