@@ -6,8 +6,9 @@ import JWTService from '../service/jwt.service';
 const jwtService = new JWTService();
 class AuthController {
     login(req: Request, res: Response) {
-        const token = jwtService.createJWT(req.body.userId);
-        res.status(201).send({ token });
+        const { accessToken, refreshToken } = jwtService.createJWT(req.body.userId);
+        jwtService.saveToken(refreshToken, req.body.userId);
+        res.status(201).json({ accessToken, refreshToken });
     }
     async signup(req: Request, res: Response) {
         const userModel = new User();
@@ -28,8 +29,9 @@ class AuthController {
                     res.status(500).json({ error: 'User creation failed' });
                     return;
                 }
-                const token = jwtService.createJWT(createdUser.userId);
-                res.status(201).send({ token });
+                const { accessToken, refreshToken } = jwtService.createJWT(createdUser.userId);
+                jwtService.saveToken(refreshToken, createdUser.userId);
+                res.status(201).json({ accessToken, refreshToken });
             },
         );
     }
