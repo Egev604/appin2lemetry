@@ -4,41 +4,40 @@ import { Request, Response } from 'express';
 import User from '../model/users.model';
 import { getRoleIdByRoleName } from '../service/roleService';
 class UserController {
-    static async listUsers(req: Request, res: Response) {
+    async listUsers(req: Request, res: Response) {
         const userModel = new User();
         userModel.getAll((err, users) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
-            res.json(users);
+            res.status(200).json(users);
         });
     }
 
-    static async createUser(req: Request, res: Response) {
-        const { firstName, lastName, email, password, roleName } = req.body;
+    async createUser(req: Request, res: Response) {
         const userModel = new User();
-        const hashedPassword = await argon2.hash(password);
-        const role = getRoleIdByRoleName(roleName);
-        const isoDateString = new Date().toISOString().split('T')[0];
-
+        const hashedPassword = await argon2.hash(req.body.password);
         userModel.create(
-            { firstName, lastName, email, password: hashedPassword, registrationDate: isoDateString, role },
-            (err) => {
+            {
+                email: req.body.email,
+                password: hashedPassword,
+                registrationDate: new Date().toISOString().split('T')[0],
+            },
+            (err, createdUser) => {
                 if (err) {
                     res.status(500).json({ error: err.message });
                     return;
                 }
-                res.send('User created successfully');
+                res.status(201).json(createdUser);
             },
         );
     }
 
-    static async updateUser(req: Request, res: Response) {
+    async updateUser(req: Request, res: Response) {
         const { id } = req.params;
         const { firstName, lastName, email, password, roleName } = req.body;
         const userModel = new User();
-
         const hashedPassword = await argon2.hash(password);
         const role = getRoleIdByRoleName(roleName);
 
@@ -55,7 +54,7 @@ class UserController {
         );
     }
 
-    static async deleteUser(req: Request, res: Response) {
+    async deleteUser(req: Request, res: Response) {
         const { id } = req.params;
         const userModel = new User();
         userModel.delete(parseInt(id), (err) => {

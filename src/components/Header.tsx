@@ -3,17 +3,12 @@ import { AppBar, Box, IconButton, Tab, Tabs, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { IUser } from '../models/User';
 import Menu from './Menu';
-//qwe
-const user: IUser = {
-    id: 1,
-    userName: 'john_doe',
-    email: 'john.doe@example.com',
-};
-const Header = () => {
+interface HeaderProps {
+    isValidToken: boolean;
+}
+const Header: React.FC<HeaderProps> = ({ isValidToken }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [currentUser] = useState<IUser | undefined>(user);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -29,7 +24,6 @@ const Header = () => {
                 }}
             >
                 <Typography variant="h3">PC Load</Typography>
-                {/* FIXME: rewrite this code, remove tabs, and add something valid like examples an in official docs */}
                 <Tabs value={0} aria-label="basic tabs example" style={{ margin: 10 }}>
                     <Link to="/main" style={{ textDecoration: 'none', color: 'black' }}>
                         <Tab label="Home" />
@@ -37,7 +31,7 @@ const Header = () => {
                     <Link to="/info" style={{ textDecoration: 'none', color: 'black' }}>
                         <Tab label="Information" />
                     </Link>
-                    {currentUser ? (
+                    {isValidToken ? (
                         <IconButton onClick={toggleMenu} size="large" edge="end" color="inherit" sx={{ mr: 2, ml: 2 }}>
                             <AccountCircleIcon />
                         </IconButton>
