@@ -33,3 +33,9 @@ export const login = async (credentials: Credentials) => {
 export const signup = async (credentials: Credentials) => {
     return await postRequest('/auth/signup', credentials);
 };
+export const requestAccessToken = async (accessToken: string) => {
+    return await postRequest('/auth/access', { accessToken });
+};
+export const requestRefreshToken = async (refreshToken: string) => {
+    return await postRequest('/auth/refresh', { refreshToken });
+};

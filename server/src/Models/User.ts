@@ -6,6 +6,7 @@ export interface IUser {
     password: string;
     registrationDate: string;
     role?: number;
+    refreshToken?: string;
 }
 export interface ICreateUser {
     email: string;

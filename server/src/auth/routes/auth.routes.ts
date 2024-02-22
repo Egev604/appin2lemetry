@@ -28,4 +28,16 @@ authRoutes.post(
     userMiddleware.validateEmailExist,
     authController.signup,
 );
+authRoutes.post(
+    '/access',
+    body('accessToken').isString(),
+    bodyValidationMiddleware.verifyBodyFieldsErrors,
+    authController.access,
+);
+authRoutes.post(
+    '/refresh',
+    body('refreshToken').isString(),
+    bodyValidationMiddleware.verifyBodyFieldsErrors,
+    authController.refresh,
+);
 export default authRoutes;

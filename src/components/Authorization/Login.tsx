@@ -15,6 +15,7 @@ import {
 import React, { useState } from 'react';
 
 import { login } from '../../api/api';
+import { setToken } from './ValidTokens';
 interface LoginData {
     email: string;
     password: string;
@@ -40,7 +41,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await login(loginData);
-            localStorage.setItem('tokens', JSON.stringify(response));
+            console.log(response);
+            setToken(response);
         } catch (error) {
             console.error('Login error:', error);
         }

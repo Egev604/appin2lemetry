@@ -35,6 +35,31 @@ class AuthController {
             },
         );
     }
+    refresh(req: Request, res: Response) {
+        const userData = jwtService.validateRefreshToken(req.body.refreshToken);
+        const userModel = new User();
+        userModel.findToken(req.body.refreshToken, (err, user) => {
+            console.log(userData, user);
+            if (!userData || !user.refreshToken) {
+                res.status(401).json('Invalid refresh token');
+            } else {
+                const { accessToken, refreshToken } = jwtService.createJWT(user.userId);
+                jwtService.saveToken(refreshToken, user.userId);
+                res.status(201).json({ accessToken, refreshToken });
+            }
+        });
+    }
+    access(req: Request, res: Response) {
+        const userData = jwtService.validateAccessToken(req.body.accessToken);
+        if (!userData || typeof userData === 'string') {
+            res.status(401).json('Invalid access token');
+        } else {
+            const userId = userData.id;
+            const { accessToken, refreshToken } = jwtService.createJWT(userId);
+            jwtService.saveToken(refreshToken, userId);
+            res.status(201).json({ accessToken, refreshToken });
+        }
+    }
 }
 
 export default AuthController;

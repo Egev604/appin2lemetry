@@ -3,12 +3,12 @@ import { AppBar, Box, IconButton, Tab, Tabs, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { IUser } from '../models/User';
 import Menu from './Menu';
-
-const Header = () => {
+interface HeaderProps {
+    isValidToken: boolean;
+}
+const Header: React.FC<HeaderProps> = ({ isValidToken }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [currentUser] = useState<IUser | undefined>(undefined);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -31,7 +31,7 @@ const Header = () => {
                     <Link to="/info" style={{ textDecoration: 'none', color: 'black' }}>
                         <Tab label="Information" />
                     </Link>
-                    {currentUser ? (
+                    {isValidToken ? (
                         <IconButton onClick={toggleMenu} size="large" edge="end" color="inherit" sx={{ mr: 2, ml: 2 }}>
                             <AccountCircleIcon />
                         </IconButton>

@@ -5,7 +5,6 @@ import User from '../../users/model/users.model';
 
 class AuthMiddleware {
     verifyUserPassword = async (req: Request, res: Response, next: NextFunction) => {
-        console.log(1);
         const userModel = new User();
         userModel.getUserByEmail(req.body.email, async (err, user) => {
             if (err) {
@@ -13,9 +12,9 @@ class AuthMiddleware {
                 return;
             }
             if (user) {
-                if (await argon2.verify(user[0].password, req.body.password)) {
+                if (await argon2.verify(user.password, req.body.password)) {
                     req.body = {
-                        userId: user[0].userId,
+                        userId: user.userId,
                     };
                     return next();
                 }
