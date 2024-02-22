@@ -25,7 +25,6 @@ class UserController {
                 registrationDate: new Date().toISOString().split('T')[0],
             },
             (err, createdUser) => {
-                console.log(createdUser);
                 if (err) {
                     res.status(500).json({ error: err.message });
                     return;
