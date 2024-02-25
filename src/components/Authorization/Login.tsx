@@ -15,7 +15,7 @@ import {
 import React, { useState } from 'react';
 
 import { login } from '../../api/api';
-import { setToken } from './ValidTokens';
+import { setToken } from './tokenUtils';
 interface LoginData {
     email: string;
     password: string;
@@ -25,10 +25,8 @@ const Login = () => {
         email: '',
         password: '',
     });
-
     const [rememberMe, setRememberMe] = useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setLoginData((prevLoginData) => ({

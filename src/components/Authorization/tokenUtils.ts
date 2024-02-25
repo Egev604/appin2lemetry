@@ -1,5 +1,5 @@
 import { requestAccessToken, requestRefreshToken } from '../../api/api';
-export async function validTokens(): Promise<boolean> {
+export async function validToken(): Promise<boolean> {
     const tokens = getToken();
     if (!tokens) return false;
 
@@ -20,6 +20,7 @@ export async function validTokens(): Promise<boolean> {
     }
     return false;
 }
+
 export const getToken = (): { accessToken: string; refreshToken: string } | null => {
     const tokens = localStorage.getItem('tokens');
     if (tokens) {
@@ -31,4 +32,7 @@ export const getToken = (): { accessToken: string; refreshToken: string } | null
 
 export const setToken = (tokens: object) => {
     localStorage.setItem('tokens', JSON.stringify(tokens));
+};
+export const removeToken = () => {
+    localStorage.removeItem('tokens');
 };

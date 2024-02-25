@@ -1,19 +1,20 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { validTokens } from './ValidTokens';
+import { validToken } from './tokenUtils';
 interface AuthContextType {
     isValidToken: boolean;
+    setIsAuthenticated?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface AuthProviderProps {
     children: ReactNode;
 }
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType>({ isValidToken: false });
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [isValidToken, setIsValidToken] = useState<boolean>(false);
 
     useEffect(() => {
         const validateToken = async () => {
-            const isValid = await validTokens();
+            const isValid = await validToken();
             setIsValidToken(isValid);
         };
 

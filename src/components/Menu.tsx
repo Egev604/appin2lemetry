@@ -4,6 +4,7 @@ import { Avatar, Divider, Drawer, IconButton, List, ListItemButton, ListItemText
 import React from 'react';
 
 import { useRouter } from '../hooks/Router';
+import { removeToken } from './Authorization/tokenUtils';
 import NightModeToggle from './NightModeToggle';
 
 interface MenuProps {
@@ -16,10 +17,15 @@ const drawerWidth = 300;
 const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
     const router = useRouter();
 
-    const handleClickButton = () => {
+    const handleClickProfile = () => {
         router.push('/userProfile');
         toggleMenu();
     };
+
+    function handleClickSingOut() {
+        removeToken();
+        router.push('/');
+    }
 
     return (
         <Drawer
@@ -51,8 +57,8 @@ const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
             </div>
             <Divider />
             <List>
-                <ListItemButton>
-                    <ListItemText primary="Profile" onClick={handleClickButton} />
+                <ListItemButton onClick={handleClickProfile}>
+                    <ListItemText primary="Profile" />
                 </ListItemButton>
                 <ListItemButton>
                     <ListItemText primary="Settings" />
@@ -60,7 +66,7 @@ const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
             </List>
             <Divider />
             <List>
-                <ListItemButton>
+                <ListItemButton onClick={handleClickSingOut}>
                     <ListItemText primary="Sign out" />
                 </ListItemButton>
             </List>

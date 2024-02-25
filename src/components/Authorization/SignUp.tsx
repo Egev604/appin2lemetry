@@ -15,7 +15,8 @@ import {
 import React, { useState } from 'react';
 
 import { signup } from '../../api/api';
-import { setToken } from './ValidTokens';
+import { useRouter } from '../../hooks/Router';
+import { setToken } from './tokenUtils';
 
 interface SignUpData {
     email: string;
@@ -33,6 +34,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [passwordsMatchError, setPasswordsMatchError] = useState('');
+    const router = useRouter();
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setSignUpData((prevSignUpData) => ({
@@ -51,8 +53,8 @@ const SignUp = () => {
         try {
             const { email, password } = signUpData;
             const response = await signup({ email, password });
-            console.log(response);
             setToken(response);
+            router.push('/');
         } catch (error) {
             console.error('Login error:', error);
         }
