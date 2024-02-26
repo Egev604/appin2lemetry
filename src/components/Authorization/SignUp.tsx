@@ -55,7 +55,7 @@ const SignUp = () => {
         try {
             const { email, password } = signUpData;
             const response = await signup({ email, password });
-            setToken(response);
+            setToken(response.token);
             router.push('/main');
             setIsValidToken(true);
         } catch (error) {

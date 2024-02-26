@@ -8,7 +8,14 @@ class AuthController {
     login(req: Request, res: Response) {
         const { accessToken, refreshToken } = jwtService.createJWT(req.body.userId);
         jwtService.saveToken(refreshToken, req.body.userId);
-        res.status(201).json({ accessToken, refreshToken });
+        const userModel = new User();
+        userModel.getUserById(req.body.userId, (err, user) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.status(201).json({ token: { accessToken, refreshToken }, user });
+        });
     }
     async signup(req: Request, res: Response) {
         const userModel = new User();
@@ -31,7 +38,7 @@ class AuthController {
                 }
                 const { accessToken, refreshToken } = jwtService.createJWT(createdUser.userId);
                 jwtService.saveToken(refreshToken, createdUser.userId);
-                res.status(201).json({ accessToken, refreshToken });
+                res.status(201).json({ token: { accessToken, refreshToken }, createdUser });
             },
         );
     }

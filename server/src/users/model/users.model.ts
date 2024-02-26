@@ -44,6 +44,9 @@ class User {
     getUserByEmail(email: string, callback: (err: Error | null, user: IUser) => void) {
         this.db.get('SELECT * FROM Users WHERE Email = ?', [email], callback);
     }
+    getUserById(userId: string, callback: (err: Error | null, user: IUser) => void) {
+        this.db.get('SELECT * FROM Users WHERE userId = ?', [userId], callback);
+    }
     saveToken(token: string, userID: number) {
         this.db.run('UPDATE Users SET refreshToken = ? WHERE userID = ? ', [token, userID]);
     }
