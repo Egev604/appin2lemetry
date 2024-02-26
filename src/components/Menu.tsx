@@ -1,9 +1,10 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import { Avatar, Divider, Drawer, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useRouter } from '../hooks/Router';
+import { AuthContext } from './Authorization/AuthContext';
 import { removeToken } from './Authorization/tokenUtils';
 import NightModeToggle from './NightModeToggle';
 
@@ -16,7 +17,7 @@ const drawerWidth = 300;
 
 const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
     const router = useRouter();
-
+    const { setIsValidToken } = useContext(AuthContext);
     const handleClickProfile = () => {
         router.push('/userProfile');
         toggleMenu();
@@ -24,7 +25,9 @@ const Menu: React.FC<MenuProps> = ({ isMenuOpen = false, toggleMenu }) => {
 
     function handleClickSingOut() {
         removeToken();
-        router.push('/');
+        router.push('/login');
+        setIsValidToken(false);
+        toggleMenu();
     }
 
     return (

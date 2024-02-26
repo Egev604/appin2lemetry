@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Login from '../components/Authorization/Login';
@@ -11,14 +11,9 @@ interface AppRoutesProps {
 }
 
 const AppRoutes: React.FC<AppRoutesProps> = ({ isValidToken }) => {
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(!loading);
-    }, [isValidToken]);
-    console.log(isValidToken);
     return (
         <Routes>
-            <Route path="/" element={isValidToken ? <Main /> : <Login />} />
+            <Route path="/" element={<Main />} />
             <Route path="/main" element={<Main />} />
             <Route path="/info" element={<Info />} />
             <Route path="/login" element={isValidToken ? <Main /> : <Login />} />
