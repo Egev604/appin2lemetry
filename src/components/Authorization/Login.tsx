@@ -12,10 +12,12 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { login } from '../../api/api';
-import { setToken } from './ValidTokens';
+import { useRouter } from '../../hooks/Router';
+import { AuthContext } from './AuthContext';
+import { setToken } from './tokenUtils';
 interface LoginData {
     email: string;
     password: string;
@@ -25,9 +27,10 @@ const Login = () => {
         email: '',
         password: '',
     });
-
     const [rememberMe, setRememberMe] = useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
+    const { setIsValidToken } = useContext(AuthContext);
+    const router = useRouter();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -41,8 +44,10 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await login(loginData);
-            console.log(response);
-            setToken(response);
+            console.log(response.token);
+            setToken(response.token);
+            router.push('/main');
+            setIsValidToken(true);
         } catch (error) {
             console.error('Login error:', error);
         }
