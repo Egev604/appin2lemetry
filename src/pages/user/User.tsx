@@ -1,16 +1,22 @@
 import { Box, Container, Grid, Tab, Tabs, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { requestUserByTokens } from '../../api/api';
+import { getToken } from '../../components/Authorization/tokenUtils';
 import { IUser } from '../../models/User';
 
-const user: IUser = {
-    id: 1,
-    userName: 'john_doe',
-    email: 'john.doe@example.com',
-};
 const User = () => {
-    const [currentUser] = useState<IUser | undefined>(user);
-
+    const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
+    useEffect(() => {
+        const getUser = async () => {
+            const tokens = getToken();
+            if (!tokens) return false;
+            const response = await requestUserByTokens(tokens);
+            console.log(response);
+            setCurrentUser(response.user);
+        };
+        getUser();
+    }, []);
     return (
         <Container sx={{ minHeight: '900px' }}>
             <Grid container>
@@ -28,7 +34,7 @@ const User = () => {
                             alt="profilePage"
                         />
                     </Box>
-                    <Typography variant="h4">{currentUser?.userName}</Typography>
+                    <Typography variant="h4">{currentUser?.firstName}</Typography>
                 </Grid>
                 <Grid item sm={8} xs={12}>
                     <Box sx={{ width: '100%', mb: 3, mt: { sm: 3, xs: 0 } }}>

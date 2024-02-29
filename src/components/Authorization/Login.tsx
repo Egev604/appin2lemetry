@@ -44,7 +44,6 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await login(loginData);
-            console.log(response.token);
             setToken(response.token);
             router.push('/main');
             setIsValidToken(true);

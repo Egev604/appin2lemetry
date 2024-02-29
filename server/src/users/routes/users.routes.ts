@@ -20,5 +20,12 @@ userRoutes.post(
 );
 userRoutes.put('/:id', userController.updateUser);
 userRoutes.delete('/:id', userController.deleteUser);
+userRoutes.post(
+    '/profile',
+    body('accessToken').isString(),
+    body('refreshToken').isString(),
+    bodyValidationMiddleware.verifyBodyFieldsErrors,
+    userController.getUserByToken,
+);
 
 export default userRoutes;
