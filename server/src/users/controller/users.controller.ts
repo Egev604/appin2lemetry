@@ -79,8 +79,8 @@ class UserController {
                 res.status(500).json({ error: err.message });
                 return;
             }
-            console.log(user);
-            res.status(201).json({ user });
+            const userToSend = { ...user, password: undefined, refreshToken: undefined };
+            res.status(201).json({ user: userToSend });
         });
     }
 }

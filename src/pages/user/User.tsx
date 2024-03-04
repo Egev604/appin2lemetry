@@ -7,6 +7,7 @@ import { IUser } from '../../models/User';
 
 const User = () => {
     const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
+    const [currentTab, setCurrentTab] = useState<number>(0);
     useEffect(() => {
         const getUser = async () => {
             const tokens = getToken();
@@ -17,6 +18,9 @@ const User = () => {
         };
         getUser();
     }, []);
+    const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
+        setCurrentTab(newValue);
+    };
     return (
         <Container sx={{ minHeight: '900px' }}>
             <Grid container>
@@ -34,14 +38,16 @@ const User = () => {
                             alt="profilePage"
                         />
                     </Box>
-                    <Typography variant="h4">{currentUser?.firstName}</Typography>
+                    <Typography variant="h4" textAlign="center">
+                        {currentUser?.firstName}
+                    </Typography>
                 </Grid>
                 <Grid item sm={8} xs={12}>
                     <Box sx={{ width: '100%', mb: 3, mt: { sm: 3, xs: 0 } }}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                            <Tabs value={0} aria-label="basic tabs example">
-                                <Tab label="tab one" />
-                                <Tab label="tab two" />
+                            <Tabs value={currentTab} onChange={handleChangeTab} aria-label="basic tabs example">
+                                <Tab label="Personal Data" />
+                                <Tab label="Settings" />
                             </Tabs>
                         </Box>
                     </Box>

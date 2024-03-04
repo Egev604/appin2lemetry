@@ -1,6 +1,5 @@
 import sqlite3 from 'sqlite3';
 
-import { IGetUser } from '../../models/GetUsers';
 import { ICreateUser, IUpdateUser, IUser } from '../../models/User';
 class User {
     private db: sqlite3.Database;
@@ -28,7 +27,7 @@ class User {
             },
         );
     }
-    getAll(callback: (err: Error | null, rows: IGetUser[]) => void) {
+    getAll(callback: (err: Error | null, rows: IUser[]) => void) {
         this.db.all('SELECT u.*, r.RoleName AS roleName FROM users u LEFT JOIN roles r ON u.Role = r.RoleID', callback);
     }
     delete(id: number, callback: (err: Error | null) => void) {
