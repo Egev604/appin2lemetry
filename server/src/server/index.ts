@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 
 import authRoutes from '../auth/routes/auth.routes';
+import pcRoutes from '../pc/routes/pc.routes';
 import userRoutes from '../users/routes/users.routes';
 
 const app: Express = express();
@@ -19,9 +20,7 @@ app.use(
 );
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
-app.get('/test', (req: Request, res: Response) => {
-    res.status(200).send(JSON.stringify({ data: 'AAAA!' }));
-});
+app.use('/pc', pcRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
