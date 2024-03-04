@@ -19,9 +19,6 @@ app.use(
 );
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
-app.get('/test', (req: Request, res: Response) => {
-    res.status(200).send(JSON.stringify({ data: 'AAAA!' }));
-});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
