@@ -52,11 +52,37 @@ class Pc {
             );
         });
     }
-    async deleteComponentsForPcAsync(computerID: number): Promise<string> {
+    async updatePC(computerID: number, query: string, params: unknown[]): Promise<IPC> {
+        return new Promise((resolve, reject) => {
+            this.db.run(query, params, (err: Error | null, pc: IPC) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(pc);
+                }
+            });
+        });
+    }
+    async deleteAllComponentsForPcAsync(computerID: number): Promise<string> {
         return new Promise((resolve, reject) => {
             this.db.run(
                 'DELETE FROM ComputerComponents WHERE ComputerID = ?',
                 [computerID],
+                (err: Error | null, result: string) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                },
+            );
+        });
+    }
+    async deleteComponentForPcAsync(computerID: number, componentID: number): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.db.run(
+                'DELETE FROM ComputerComponents WHERE ComputerID = ? AND ComponentID = ?',
+                [computerID, componentID],
                 (err: Error | null, result: string) => {
                     if (err) {
                         reject(err);

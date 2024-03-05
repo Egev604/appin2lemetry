@@ -8,6 +8,7 @@ const pcRoutes = express.Router();
 pcRoutes.get('/', pcController.listPC);
 pcRoutes.delete('/:id', pcController.deletePC);
 pcRoutes.get('/:id', pcController.getPc);
+pcRoutes.put('/:id', pcController.updatePC);
 pcRoutes.post(
     '/',
     body('Model').isString(),

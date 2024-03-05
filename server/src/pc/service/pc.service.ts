@@ -11,8 +11,8 @@ class PcService {
     async deletePCAsync(computerID: number): Promise<string> {
         return pcModel.deletePCAsync(computerID);
     }
-    async deleteComponentsForPC(computerID: number): Promise<string> {
-        return pcModel.deleteComponentsForPcAsync(computerID);
+    async deleteAllComponentsForPC(computerID: number): Promise<string> {
+        return pcModel.deleteAllComponentsForPcAsync(computerID);
     }
     async createPc(pc: ICreatePC): Promise<ICreatePC> {
         return pcModel.createPC(pc);
@@ -21,7 +21,7 @@ class PcService {
         return await pcModel.getPCByIdAsync(computerID);
     }
     async addComponentsForPC(
-        pc: ICreatePC,
+        pc: ICreatePC | IPC,
     ): Promise<{ ComputerID: number; ComponentID: number; ComputerComponentID: number }[]> {
         const promises: Promise<{ ComputerID: number; ComponentID: number; ComputerComponentID: number }>[] = [];
         if (pc.components) {
@@ -58,6 +58,52 @@ class PcService {
         }
 
         return components;
+    }
+    async updatePC(updatedPC: IPC): Promise<IPC> {
+        const componentsForPc = await this.getComponentsForPCAsync(updatedPC.ComputerID);
+        const newComponents: IComponent[] = [];
+        if (updatedPC.components) {
+            for (const newComponent of Object.values(updatedPC.components)) {
+                const existingComponent = componentsForPc.find((comp) => comp.ComponentID === newComponent.ComponentID);
+
+                if (!existingComponent) {
+                    newComponents.push(newComponent);
+                }
+            }
+        }
+
+        const componentsToDelete = componentsForPc.filter((existingComponent: IComponent) =>
+            Object.values(updatedPC.components || {}).some(
+                (newComponent: IComponent) => newComponent.TypeID === existingComponent.TypeID,
+            ),
+        );
+        if (componentsToDelete) {
+            for (const componentToDelete of componentsToDelete) {
+                await pcModel.deleteComponentForPcAsync(updatedPC.ComputerID, Number(componentToDelete.ComponentID));
+            }
+            if (newComponents.length > 0) {
+                console.log(updatedPC);
+                await this.addComponentsForPC(updatedPC);
+            }
+        }
+        let query = 'UPDATE Computers SET ';
+        const params = [];
+        if (updatedPC.Model) {
+            query += 'Model = ?, ';
+            params.push(updatedPC.Model);
+        }
+        if (updatedPC.Description) {
+            query += 'Description = ?, ';
+            params.push(updatedPC.Description);
+        }
+        if (updatedPC.Condition) {
+            query += 'Condition = ?, ';
+            params.push(updatedPC.Condition);
+        }
+        query = query.slice(0, -2) + ' WHERE ComputerID = ?';
+        params.push(updatedPC.ComputerID);
+        pcModel.updatePC(updatedPC.ComputerID, query, params);
+        return this.getPcByIdWithComponents(updatedPC.ComputerID);
     }
 }
 function getComponentName(typeID: number): string {
