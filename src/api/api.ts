@@ -39,3 +39,6 @@ export const requestAccessToken = async (accessToken: string) => {
 export const requestRefreshToken = async (refreshToken: string) => {
     return await postRequest('/auth/refresh', { refreshToken });
 };
+export const requestUserByTokens = async (tokens: { accessToken: string; refreshToken: string }) => {
+    return await postRequest('/users/profile', tokens);
+};
